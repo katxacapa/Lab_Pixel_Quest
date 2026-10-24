@@ -23,6 +23,6 @@ public class MovingPlatform : MonoBehaviour
         );
 
         transform.position = startPosition
-            + Vector2.right * movement;
+            + Vector2.up * movement;
     }
 }
