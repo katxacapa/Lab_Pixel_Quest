@@ -10,14 +10,18 @@ public class GeoContoller : MonoBehaviour
     public string nextLevel = "Level2";
 
     private Rigidbody2D rb2d;
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer _spriteRenderer;
     private bool isGrounded = false;
 
-    void Start()
+
+    private void Start()
     {
+
         rb2d = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+
     }
+
 
     void Update()
     {
@@ -25,9 +29,15 @@ public class GeoContoller : MonoBehaviour
         float xInput = Input.GetAxis("Horizontal");
         rb2d.velocity = new Vector2(
             xInput * variable1,
-            rb2d.velocity.y
-        );
+            rb2d.velocity.y);
 
+            if (xInput > 0){ _spriteRenderer.flipX = true;   }
+    
+        else if (xInput< 0) 
+        {
+            _spriteRenderer.flipX = true;
+        }
+   
         // Jump with Spacebar
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
@@ -40,13 +50,13 @@ public class GeoContoller : MonoBehaviour
 
         // Switch colors with 1, 2, and 3
         if (Input.GetKeyDown(KeyCode.Alpha1))
-            spriteRenderer.color = Color.red;
+            _spriteRenderer.color = Color.red;
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
-            spriteRenderer.color = Color.green;
+            _spriteRenderer.color = Color.green;
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
-            spriteRenderer.color = Color.blue;
+            _spriteRenderer.color = Color.blue;
     }
 
     // Detect landing on solid ground

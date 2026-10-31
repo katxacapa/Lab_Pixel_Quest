@@ -13,6 +13,7 @@ TagManager:
   - Bullet
   - Bounds
   - Ground
+  - BouncePad
   layers:
   - Default
   - TransparentFX
